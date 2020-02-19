@@ -13,6 +13,9 @@ namespace TesteFahrzeugpark
     {
         static void Main(string[] args)
         {
+            //Ändern des durch Console verwendeten Zeichensatzes auf Unicode (damit das €-Zeichen angezeigt werden kann)
+            Console.OutputEncoding = Encoding.UTF8;
+
             #region Modul04: OOP
             ////Instanzierung der Fahrzeuge
 
@@ -46,23 +49,38 @@ namespace TesteFahrzeugpark
 
             #region Lab04: Fahrzeug_Klasse
 
-            //Deklaration einer Fahrzeug-Variablen und Initialisierung mittels einer Fahrzeug-Instanz
-            Fahrzeug fz1 = new Fahrzeug("Mercedes", 190, 23000);
-            //Ausführen der BeschreibeMich()-Methode des Fahrzeugs und Ausgabe in der Konsole
-            Console.WriteLine(fz1.BeschreibeMich());
+            ////Deklaration einer Fahrzeug-Variablen und Initialisierung mittels einer Fahrzeug-Instanz
+            //Fahrzeug fz1 = new Fahrzeug("Mercedes", 190, 23000);
+            ////Ausführen der BeschreibeMich()-Methode des Fahrzeugs und Ausgabe in der Konsole
+            //Console.WriteLine(fz1.BeschreibeMich());
 
-            //Diverse Methodenausführungen
-            fz1.StarteMotor();
-            fz1.Beschleunige(120);
-            Console.WriteLine(fz1.BeschreibeMich());
+            ////Diverse Methodenausführungen
+            //fz1.StarteMotor();
+            //fz1.Beschleunige(120);
+            //Console.WriteLine(fz1.BeschreibeMich());
 
-            fz1.Beschleunige(300);
-            Console.WriteLine(fz1.BeschreibeMich());
+            //fz1.Beschleunige(300);
+            //Console.WriteLine(fz1.BeschreibeMich());
 
-            fz1.StoppeMotor();
-            Console.WriteLine(fz1.BeschreibeMich());
+            //fz1.StoppeMotor();
+            //Console.WriteLine(fz1.BeschreibeMich());
 
             #endregion
+
+            PKW pkw1 = new PKW("BMW", 190, 23000, 4);
+            pkw1 = new PKW("BMW", 190, 23000, 4);
+            pkw1 = new PKW("BMW", 190, 23000, 4);
+            pkw1 = new PKW("BMW", 190, 23000, 4);
+            pkw1 = new PKW("BMW", 190, 23000, 4);
+            pkw1 = new PKW("BMW", 190, 23000, 4);
+            pkw1 = new PKW("BMW", 190, 23000, 4);
+
+            Console.WriteLine(pkw1);
+            pkw1.Hupe();
+
+            Console.WriteLine(Fahrzeug.AnzahlErstellterFahrzeuge);
+            Console.WriteLine(Fahrzeug.ZeigeErstellteFahrzeuge());
+
             Console.ReadKey();
         }
     }

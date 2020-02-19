@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace Fahrzeugpark
 {
-    public class Fahrzeug
+    public abstract class Fahrzeug
     {
+		public static int AnzahlErstellterFahrzeuge { get; set; }
+
+		public static string ZeigeErstellteFahrzeuge()
+		{
+			return $"Es wurden {AnzahlErstellterFahrzeuge} Fahrzeuge gebaut.";
+		}
+
 		#region Felder und Eigenschaften
 		//FELDER (Membervariablen) sind die Variablen einzelner Objekte, welche die Zustände dieser Objekte definieren
 		private int maxGeschwindigkeit;
@@ -31,7 +38,7 @@ namespace Fahrzeugpark
 		public string Name { get; set; }
 		public decimal Preis { get; set; }
 		public int AktGeschwindigkeit { get; set; }
-		public bool MotorLäuft { get; set; }
+		public bool MotorLäuft { get; set; } // := Zustand
 
 		#endregion
 
@@ -45,6 +52,8 @@ namespace Fahrzeugpark
 			this.Preis = preis;
 			this.AktGeschwindigkeit = 0;
 			this.MotorLäuft = false;
+
+			Fahrzeug.AnzahlErstellterFahrzeuge++;
 		}
 
 		//Es können mehrere Konstruktoren definiert werden, welche unterschiedliche Übergabeparameter haben (Überladung). Ein Konstruktor, der keine
@@ -91,13 +100,20 @@ namespace Fahrzeugpark
 			this.AktGeschwindigkeit = 0;
 		}
 
-		public string BeschreibeMich()
+		public virtual string BeschreibeMich()
 		{
 			if (this.MotorLäuft)
 				return $"{this.Name} kostet {this.Preis}€ und fährt momentan mit {this.AktGeschwindigkeit} von maximal {this.MaxGeschwindigkeit}km/h.";
 			else
 				return $"{this.Name} kostet {this.Preis}€ und könnte maximal {this.AktGeschwindigkeit}km/h fahren.";
 		}
+
+		public override string ToString()
+		{
+			return this.BeschreibeMich();
+		}
+
+		public abstract void Hupe();
 		#endregion
 	}
 }
