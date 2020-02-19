@@ -91,27 +91,65 @@ namespace TesteFahrzeugpark
 
             #region Lab05: PKW-, Schiff- und Flugzeug-Klasse
 
-            //Instanzierung eines Bsp-PKWs
-            PKW pkw1 = new PKW("BMW", 250, 23000, 5);
-            Console.WriteLine(pkw1.BeschreibeMich());
-            pkw1.Hupe();
+            ////Instanzierung eines Bsp-PKWs
+            //PKW pkw1 = new PKW("BMW", 250, 23000, 5);
+            //Console.WriteLine(pkw1.BeschreibeMich());
+            //pkw1.Hupe();
 
-            //Instanzierung eines Bsp-Schiffs
-            Schiff schiff1 = new Schiff("Titanic", 40, 3500000, Schiff.SchiffsTreibstoff.Dampf);
-            Console.WriteLine(schiff1.BeschreibeMich());
-            schiff1.Hupe();
+            ////Instanzierung eines Bsp-Schiffs
+            //Schiff schiff1 = new Schiff("Titanic", 40, 3500000, Schiff.SchiffsTreibstoff.Dampf);
+            //Console.WriteLine(schiff1.BeschreibeMich());
+            //schiff1.Hupe();
 
-            //Instanzierung eines Bsp-Flugzeugs
-            Flugzeug flugzeug1 = new Flugzeug("Boing", 750, 3000000, 9990);
-            Console.WriteLine(flugzeug1.BeschreibeMich());
-            flugzeug1.Hupe();
+            ////Instanzierung eines Bsp-Flugzeugs
+            //Flugzeug flugzeug1 = new Flugzeug("Boing", 750, 3000000, 9990);
+            //Console.WriteLine(flugzeug1.BeschreibeMich());
+            //flugzeug1.Hupe();
 
-            //Ausgabe der statischen Methode der Fahrzeugklasse
-            Console.WriteLine(Fahrzeug.ZeigeAnzahlFahrzeuge());
+            ////Ausgabe der statischen Methode der Fahrzeugklasse
+            //Console.WriteLine(Fahrzeug.ZeigeAnzahlFahrzeuge());
 
             #endregion
 
+            #region Modul06: Interfaces und Polymorphismus
+            //Instanzierung von Bsp-Objekt
+            PKW pkw1 = new PKW("BMW", 190, 23000, 4);
+            //Aufruf der Interface-Methode
+            pkw1.Crash();
+
+            //Zuweisung neuer Variablen (anderer Variablentyp) mit dem PKW-Objekt
+            //-> Variablentyp definiert 'Sichtbarkeit' der Eigenschaften
+            Fahrzeug fz1 = pkw1;
+            IBewegbar bewegbaresObjekt = pkw1;
+
+            //BSP: Variablentyp = Fahrzeug | Laufzeittyp (= Typ des Objekts) = PKW
+            Fahrzeug fz2 = new PKW("VW", 190, 25000, 3);
+
+            //Prüdung, ob in Fahrzeug-Variable ein PKW-Objekt liegt...
+            if (fz2 is PKW)
+            {
+                //... wenn ja, dann Cast in PKW und Zuweisung zu PKW-Variable
+                PKW pkw2 = (PKW)fz2;
+            }
+
+            //Aufruf der BSP-Funktion (s.u.)
+            MontiereNeuesRad(pkw1); 
+            #endregion
+
             Console.ReadKey();
+        }
+
+        //BSP-Funktion: Polymorphismus (Modul 06)
+        //Funktion empfängt ein beliebiges Objekt, dass das Interface IBewegbar implementiert hat
+        public static void MontiereNeuesRad(IBewegbar bewegbar)
+        {
+            //Manipulation der durch Interface definierten Eigenschaft
+            bewegbar.AnzahlRäder++;
+
+            //Test, ob Objekt ein Flugzeug ist...
+            if (bewegbar is Flugzeug)
+                //...wenn ja, dann Cast in Flugzeug und Manipulation der Flugzeug-Spezifischen Eigenschaft MaxFlughöhe
+                ((Flugzeug)bewegbar).MaxFlughöhe -= 100;
         }
     }
 }
