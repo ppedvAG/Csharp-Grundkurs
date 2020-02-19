@@ -8,12 +8,16 @@ namespace Fahrzeugpark
 {
     public abstract class Fahrzeug
     {
+		#region Statische Member
+		//Als STATIC markierte Variablen und Methoden hängen an der Klasse selbst und nicht an instanziierten Objekten.
 		public static int AnzahlErstellterFahrzeuge { get; set; }
 
-		public static string ZeigeErstellteFahrzeuge()
+		public static string ZeigeAnzahlFahrzeuge()
 		{
 			return $"Es wurden {AnzahlErstellterFahrzeuge} Fahrzeuge gebaut.";
 		}
+
+		#endregion
 
 		#region Felder und Eigenschaften
 		//FELDER (Membervariablen) sind die Variablen einzelner Objekte, welche die Zustände dieser Objekte definieren
@@ -108,11 +112,15 @@ namespace Fahrzeugpark
 				return $"{this.Name} kostet {this.Preis}€ und könnte maximal {this.AktGeschwindigkeit}km/h fahren.";
 		}
 
+		//Die ToString()-Methode wird von der object-Klasse an alle anderen Klassen vererbt. Sie wird immer dann aufgerufen, wenn ein Objekt als
+		//String dargestellt werden soll
 		public override string ToString()
 		{
 			return this.BeschreibeMich();
 		}
 
+		//Eine als ABSTRACT gesetzte Methode (nur in abstrakten Klassen möglich) beseht nur aus einem Methodenkopf und zwingt erbende
+		//Klassen diese Methode zu implementieren
 		public abstract void Hupe();
 		#endregion
 	}
