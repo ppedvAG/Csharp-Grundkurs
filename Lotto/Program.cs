@@ -14,7 +14,7 @@ namespace Lotto
             Random generator = new Random();
             int[] benutzerZahlen = new int[3];
             int[] zufallsZahlen = new int[3];
-            int treffer = 0;
+            int treffer=0;
 
             //Schleife zum Würfeln der Zahlen
             for (int i = 0; i < zufallsZahlen.Length; i++)
