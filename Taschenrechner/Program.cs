@@ -24,7 +24,7 @@ namespace Taschenrechner
 
             Console.WriteLine("Wähle eine Rechenoperation aus: ");
             //Präsentation der möglichen Optionen
-            for (int i = 1; i <= Enum.GetValues(typeof(Rechenoperation)).Length; i++)
+            for (int i = 1; i <= 4; i++)
             {
                 Console.WriteLine($"{i}: {(Rechenoperation)i}");
             }
