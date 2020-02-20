@@ -112,31 +112,142 @@ namespace TesteFahrzeugpark
             #endregion
 
             #region Modul06: Interfaces und Polymorphismus
-            //Instanzierung von Bsp-Objekt
-            PKW pkw1 = new PKW("BMW", 190, 23000, 4);
-            //Aufruf der Interface-Methode
-            pkw1.Crash();
+            ////Instanzierung von Bsp-Objekt
+            //PKW pkw1 = new PKW("BMW", 190, 23000, 4);
+            ////Aufruf der Interface-Methode
+            //pkw1.Crash();
 
-            //Zuweisung neuer Variablen (anderer Variablentyp) mit dem PKW-Objekt
-            //-> Variablentyp definiert 'Sichtbarkeit' der Eigenschaften
-            Fahrzeug fz1 = pkw1;
-            IBewegbar bewegbaresObjekt = pkw1;
+            ////Zuweisung neuer Variablen (anderer Variablentyp) mit dem PKW-Objekt
+            ////-> Variablentyp definiert 'Sichtbarkeit' der Eigenschaften
+            //Fahrzeug fz1 = pkw1;
+            //IBewegbar bewegbaresObjekt = pkw1;
 
-            //BSP: Variablentyp = Fahrzeug | Laufzeittyp (= Typ des Objekts) = PKW
-            Fahrzeug fz2 = new PKW("VW", 190, 25000, 3);
+            ////BSP: Variablentyp = Fahrzeug | Laufzeittyp (= Typ des Objekts) = PKW
+            //Fahrzeug fz2 = new PKW("VW", 190, 25000, 3);
 
-            //Prüdung, ob in Fahrzeug-Variable ein PKW-Objekt liegt...
-            if (fz2 is PKW)
-            {
-                //... wenn ja, dann Cast in PKW und Zuweisung zu PKW-Variable
-                PKW pkw2 = (PKW)fz2;
-            }
+            ////Prüdung, ob in Fahrzeug-Variable ein PKW-Objekt liegt...
+            //if (fz2 is PKW)
+            //{
+            //    //... wenn ja, dann Cast in PKW und Zuweisung zu PKW-Variable
+            //    PKW pkw2 = (PKW)fz2;
+            //}
 
-            //Aufruf der BSP-Funktion (s.u.)
-            MontiereNeuesRad(pkw1); 
+            ////Aufruf der BSP-Funktion (s.u.)
+            //MontiereNeuesRad(pkw1);
             #endregion
 
+            #region Lab06: IBeladbar
+
+            PKW pkw1 = new PKW("BMW", 250, 23000, 5);
+            Flugzeug flugzeug1 = new Flugzeug("Boing", 750, 3000000, 9990);
+            Schiff schiff1 = new Schiff("Titanic", 40, 3500000, Schiff.SchiffsTreibstoff.Dampf);
+
+            BeladeFahrzeuge(pkw1, flugzeug1);
+            BeladeFahrzeuge(flugzeug1, schiff1);
+            BeladeFahrzeuge(schiff1, pkw1);
+
+            Console.WriteLine("\n" + schiff1.BeschreibeMich());
+
+            #endregion
+
+            #region Modul07: Generische Listen
+            ////Deklaration und Initialisierung einer Liste von Strings
+            //List<string> Städteliste = new List<string>();
+
+            ////Hinzufügen von Listeneinträgen
+            //Städteliste.Add("Berlin");
+            //Städteliste.Add("Köln");
+            //Städteliste.Add("Hamburg");
+            //Städteliste.Add("Nürnberg");
+            //Städteliste.Add("München");
+
+            ////Ausgabe der Länge der Liste
+            //Console.WriteLine(Städteliste.Count);
+
+            ////Ausgabe der 3. Listenposition
+            //Console.WriteLine(Städteliste[2]);
+
+            ////Manipulation der 3. Listenposition
+            //Staedteliste[2] = "Dresden";
+            //Console.WriteLine(Staedteliste[2]);
+
+            ////Schleife über die Liste
+            //foreach (var item in Städteliste)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            ////Löschen des Eintrags 'Köln' (Nachfolgende Einträge rücken nach oben)
+            //Staedteliste.Remove("Köln");
+
+            ////Bsp für Fahrzeug-Liste
+            //List<Fahrzeug> Fahrzeugliste = new List<Fahrzeug>();
+
+            //Fahrzeugliste.Add(new PKW("BMW", 190, 23000, 4));
+            //Fahrzeugliste.Add(new PKW("BMW", 190, 23000, 4));
+            //Fahrzeugliste.Add(new PKW("BMW", 190, 23000, 4));
+            //Fahrzeugliste.Add(new PKW("BMW", 190, 23000, 4));
+            //Fahrzeugliste.Add(new PKW("BMW", 190, 23000, 4));
+
+            //foreach (var item in Fahrzeugliste)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            //Fahrzeugliste.RemoveAt(3);
+
+
+            ////Deklaration und Initialisierung eines Dictionarys (Key: Int, Value: String)
+            //Dictionary<int, string> Dict = new Dictionary<int, string>();
+
+            ////Hinzufügen von Dictionary-Einträgen
+            //Dict.Add(1, "Hallo");
+            //Dict.Add(202, "Ciao");
+            //Dict.Add(3185, "Hi");
+
+            ////Ausgabe des Eintrags mit Key '202'
+            //Console.WriteLine(Dict[202]);
+
+            ////Deklaration und Initialisierung eines Hastables + Erstellung und Abruf von Einträgen (nicht-genereisches Dictionary nach dem Hash-Speicherprinzip)
+            //Hashtable ht = new Hashtable();
+            //ht.Add("Hallo", 450);
+            //ht.Add(78.5, new PKW("VW", 260, 250020, 4));
+            //Console.WriteLine(ht["Hallo"]);
+
+            ////Schleife über Dictionary
+            //foreach (var item in Dictionary1)
+            //{
+            //    Console.WriteLine(item.Key + ": " + item.Value);
+            //}
+
+            ////Deklaration und Initialisierung eines Hastables + Erstellung und Abruf von Einträgen (nicht-genereisches Dictionary nach dem Hash-Speicherprinzip)
+            //Hashtable ht = new Hashtable();
+            //ht.Add("Hallo", 450);
+            //ht.Add(78.5, new PKW("VW", 260, 250020, 4));
+            //Console.WriteLine(ht["Hallo"]);
+
+            ////Deklaration und Initialisierung eines HashSets (generische Liste nach dem Hash-Speicherprinzip)
+            //HashSet<int> hs = new HashSet<int>();
+            //hs.Add(23); 
+            #endregion
+
+
             Console.ReadKey();
+        }
+
+        //Methode Lab06
+        public static void BeladeFahrzeuge(Fahrzeug fz1, Fahrzeug fz2)
+        {
+            if (fz1 is IBeladbar)
+            {
+                ((IBeladbar)fz1).Belade(fz2);
+            }
+            else if (fz2 is IBeladbar)
+            {
+                (fz2 as IBeladbar).Belade(fz1);
+            }
+            else
+                Console.WriteLine("Keines der Fahrzeuge kann ein Fahrzeug transportieren.");
         }
 
         //BSP-Funktion: Polymorphismus (Modul 06)
