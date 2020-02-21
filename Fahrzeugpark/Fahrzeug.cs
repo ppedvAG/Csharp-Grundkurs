@@ -17,6 +17,18 @@ namespace Fahrzeugpark
 			return $"Es wurden {AnzahlErstellterFahrzeuge} Fahrzeuge gebaut.";
 		}
 
+		//Mittels des OPERATOR-Stichworts können für einzelne Klassen Operatoren definiert werden
+		//(Für Verwendung siehe TesteFahrzeugpark)
+		public static bool operator ==(Fahrzeug fz1, Fahrzeug fz2)
+		{
+			return fz1.Name == fz2.Name;
+		}
+
+		public static bool operator !=(Fahrzeug fz1, Fahrzeug fz2)
+		{
+			return fz1.Name != fz2.Name;
+		}
+
 		#endregion
 
 		#region Felder und Eigenschaften

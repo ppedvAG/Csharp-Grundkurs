@@ -138,15 +138,15 @@ namespace TesteFahrzeugpark
 
             #region Lab06: IBeladbar
 
-            PKW pkw1 = new PKW("BMW", 250, 23000, 5);
-            Flugzeug flugzeug1 = new Flugzeug("Boing", 750, 3000000, 9990);
-            Schiff schiff1 = new Schiff("Titanic", 40, 3500000, Schiff.SchiffsTreibstoff.Dampf);
+            //PKW pkw1 = new PKW("BMW", 250, 23000, 5);
+            //Flugzeug flugzeug1 = new Flugzeug("Boing", 750, 3000000, 9990);
+            //Schiff schiff1 = new Schiff("Titanic", 40, 3500000, Schiff.SchiffsTreibstoff.Dampf);
 
-            BeladeFahrzeuge(pkw1, flugzeug1);
-            BeladeFahrzeuge(flugzeug1, schiff1);
-            BeladeFahrzeuge(schiff1, pkw1);
+            //BeladeFahrzeuge(pkw1, flugzeug1);
+            //BeladeFahrzeuge(flugzeug1, schiff1);
+            //BeladeFahrzeuge(schiff1, pkw1);
 
-            Console.WriteLine("\n" + schiff1.BeschreibeMich());
+            //Console.WriteLine("\n" + schiff1.BeschreibeMich());
 
             #endregion
 
@@ -231,6 +231,97 @@ namespace TesteFahrzeugpark
             //hs.Add(23); 
             #endregion
 
+            #region Lab07 ZufälligeFahrzeuglisten
+
+            ////Deklaration der benötigten Variablen und und Initialisierung mit Instanzen der benötigten Objekte
+            //Random generator = new Random();
+            //Queue<Fahrzeug> fzQueue = new Queue<Fahrzeug>();
+            //Stack<Fahrzeug> fzStack = new Stack<Fahrzeug>();
+            //Dictionary<Fahrzeug, Fahrzeug> fzDict = new Dictionary<Fahrzeug, Fahrzeug>();
+            ////Deklaration und Initialisierung einer Variablen zur Bestimmung der Anzahl der Durchläufe 
+            //int AnzahlFZs = 10000;
+
+            ////Schleife zur zufälligen Befüllung von Queue und Stack
+            //for (int i = 0; i < AnzahlFZs; i++)
+            //{
+            //    //Würfeln einer zufälligen Zahl im Switch
+            //    switch (generator.Next(1, 4))
+            //    {
+            //        //Erzeugung von Objekten je nach zufälliger Zahl
+            //        case 1:
+            //            fzQueue.Enqueue(new Flugzeug($"Boing_Q{i}", 800, 3600000, 9999));
+            //            fzStack.Push(new Flugzeug($"Boing_S{i}", 800, 3600000, 9999));
+            //            break;
+            //        case 2:
+            //            fzQueue.Enqueue(new Schiff($"Titanic_Q{i}", 40, 3500000, Schiff.SchiffsTreibstoff.Dampf));
+            //            fzStack.Push(new Schiff($"Titanic_S{i}", 40, 3500000, Schiff.SchiffsTreibstoff.Dampf));
+            //            break;
+            //        case 3:
+            //            fzQueue.Enqueue(PKW.ErzeugeZufälligenPKW($"_Q{i}"));
+            //            fzStack.Push(PKW.ErzeugeZufälligenPKW($"_S{i}"));
+            //            break;
+            //    }
+            //}
+
+            ////Schleife zur Prüfung auf das Interface und Befüllung des Dictionaries
+            //for (int i = 0; i < AnzahlFZs; i++)
+            //{
+            //    //Prüfung, ob das Interface vorhanden ist (mittels Peek(), da die Objekte noch benötigt werden)...
+            //    if (fzQueue.Peek() is IBeladbar)
+            //    {
+            //        //...wenn ja, dann Cast in das Interface und Ausführung der Belade()-Methode (mittels Peek())...
+            //        ((IBeladbar)fzQueue.Peek()).Belade(fzStack.Peek());
+            //        //...sowie Hinzufügen zum Dictionary (mittels Pop()/Dequeue(), um beim nächsten Durchlauf andere Objekte an den Spitzen zu haben)
+            //        fzDict.Add(fzQueue.Dequeue(), fzStack.Pop());
+            //    }
+            //    else
+            //    {
+            //        //... wenn nein, dann Löschung der obersten Objekte (mittels Pop()/Dequeue())
+            //        fzQueue.Dequeue();
+            //        fzStack.Pop();
+            //    }
+            //}
+
+            ////Programmpause
+            //Console.ReadKey();
+            //Console.WriteLine("\n----------LADELISTE----------");
+
+            ////Schleife zur Ausgabe des Dictionaries
+            //foreach (var item in fzDict)
+            //{
+            //    Console.WriteLine($"'{item.Key.Name}' hat '{item.Value.Name}' geladen.");
+            //}
+
+            #endregion
+
+            //Erstellung von Bsp-Objekten
+            PKW pkw1 = PKW.ErzeugeZufälligenPKW("");
+            PKW pkw2 = PKW.ErzeugeZufälligenPKW("");
+
+            pkw2.Name = pkw1.Name;
+
+            Console.WriteLine(pkw1.Name);
+            Console.WriteLine(pkw2.Name);
+
+            //Bsp für die Verwendung der in der Fahrzeug-Klasse definierten Operatoren
+            Console.WriteLine(pkw1 == pkw2);
+            Console.WriteLine(pkw1 != pkw2);
+
+            Flugzeug flug1 = new Flugzeug("Boing", 800, 30000000, 9999);
+
+            //Bsp für die Verwendung von IEnumerable
+            foreach (var item in flug1)
+            {
+                Console.WriteLine(item);
+            }
+
+            //Bsp für die Verwendung der Indexer-Property
+            Console.WriteLine(flug1[2]);
+
+            Random gene = new Random();
+
+            //Bsp für die Verwendung einer Erweiterungsmethode (s.u.)
+            Console.WriteLine(gene.NextInclusive(1,5));
 
             Console.ReadKey();
         }
@@ -262,5 +353,16 @@ namespace TesteFahrzeugpark
                 //...wenn ja, dann Cast in Flugzeug und Manipulation der Flugzeug-Spezifischen Eigenschaft MaxFlughöhe
                 ((Flugzeug)bewegbar).MaxFlughöhe -= 100;
         }
+    }
+}
+
+
+static class Hilfsmethoden
+{
+    //Mittels des THIS-Stichworts in der Parameterübergabe kann eine Methode als Erweiterungsmethode einer Klasse definiert
+    //werden. Diese muss in einer statischen Klasse beschrieben werden und wird dann als Teil der zugeordneten Klasse betrachtet.
+    public static int NextInclusive(this Random generator, int untergrenze, int obergrenze)
+    {
+        return generator.Next(untergrenze, obergrenze + 1);
     }
 }
