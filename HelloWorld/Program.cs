@@ -43,7 +43,7 @@ namespace HelloWorld
              satz = $"Max ist {Alter} Jahre alt und wohnt in {stadt}.";
             Console.WriteLine(satz);
 
-            //Ausgabe einer Berchnung
+            //Ausgabe einer Berechnung
             int a = 15;
             int b = 23;
             //durch Berechnung in Variablen
